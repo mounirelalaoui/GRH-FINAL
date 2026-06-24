@@ -1,0 +1,2 @@
+import { useState, useCallback } from 'react'
+export const useFilter = (init={}) => { const [filters,setFilters]=useState(init); const setFilter=useCallback((k,v)=>setFilters(p=>({...p,[k]:v})),[]); const resetFilters=useCallback(()=>setFilters(init),[init]); const activeCount=Object.values(filters).filter(v=>v!==''&&v!==null&&v!==undefined).length; return {filters,setFilter,resetFilters,activeCount,hasActive:activeCount>0} }

@@ -1,0 +1,2 @@
+import { useState } from 'react'
+export const useLocalStorage = (key,init) => { const [stored,setStored]=useState(()=>{ try{const i=localStorage.getItem(key);return i?JSON.parse(i):init}catch{return init} }); const setValue=(v)=>{ try{const val=v instanceof Function?v(stored):v;setStored(val);localStorage.setItem(key,JSON.stringify(val))}catch{} }; return [stored,setValue,()=>{localStorage.removeItem(key);setStored(init)}] }

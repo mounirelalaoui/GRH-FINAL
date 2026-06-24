@@ -1,0 +1,2 @@
+import { useState, useCallback } from 'react'
+export const useSort = (dk='id',dd='asc') => { const [sortKey,setSortKey]=useState(dk); const [sortDir,setSortDir]=useState(dd); const handleSort=useCallback((k)=>{ if(k===sortKey) setSortDir(d=>d==='asc'?'desc':'asc'); else{setSortKey(k);setSortDir('asc')} },[sortKey]); return {sortKey,sortDir,handleSort,resetSort:()=>{setSortKey(dk);setSortDir(dd)},sortParams:{sort:sortKey,direction:sortDir}} }

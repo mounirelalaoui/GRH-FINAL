@@ -1,0 +1,8 @@
+import { AlertCircle, CheckCircle, Info, AlertTriangle, X } from 'lucide-react'
+import { useState } from 'react'
+const VARIANTS = { info:{wrapper:'bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800',icon:<Info size={16} className="text-blue-500"/>,title:'text-blue-800 dark:text-blue-300',text:'text-blue-700 dark:text-blue-400'}, success:{wrapper:'bg-emerald-50 dark:bg-emerald-900/20 border-emerald-200 dark:border-emerald-800',icon:<CheckCircle size={16} className="text-emerald-500"/>,title:'text-emerald-800 dark:text-emerald-300',text:'text-emerald-700 dark:text-emerald-400'}, warning:{wrapper:'bg-amber-50 dark:bg-amber-900/20 border-amber-200 dark:border-amber-800',icon:<AlertTriangle size={16} className="text-amber-500"/>,title:'text-amber-800 dark:text-amber-300',text:'text-amber-700 dark:text-amber-400'}, error:{wrapper:'bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-800',icon:<AlertCircle size={16} className="text-red-500"/>,title:'text-red-800 dark:text-red-300',text:'text-red-700 dark:text-red-400'} }
+const Alert = ({ variant='info', title, children, dismissible=false, className='' }) => {
+  const [visible,setVisible]=useState(true); const v=VARIANTS[variant]; if(!visible)return null
+  return <div className={`flex gap-3 p-4 rounded-xl border ${v.wrapper} ${className}`}><span className="shrink-0 mt-0.5">{v.icon}</span><div className="flex-1 min-w-0">{title && <p className={`text-sm font-semibold mb-0.5 ${v.title}`}>{title}</p>}<div className={`text-sm ${v.text}`}>{children}</div></div>{dismissible && <button onClick={()=>setVisible(false)} className="shrink-0 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"><X size={14}/></button>}</div>
+}
+export default Alert
